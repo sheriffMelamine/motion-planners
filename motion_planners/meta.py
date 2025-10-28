@@ -81,8 +81,9 @@ def random_restarts(solve_fn, start, goal, distance_fn, sample_fn, extend_fn, co
             break
     solutions = sorted(solutions, key=lambda p: compute_path_cost(p, distance_fn))
     solution_costs = [(len(path), round(compute_path_cost(path, distance_fn), 3)) for path in solutions]
-    print('Attempts: {} | Solutions ({}): {} | Time: {:.3f}'.format(
-        attempt, len(solutions), solution_costs, elapsed_time(start_time)))
+    if verbose is True:
+        print('Attempts: {} | Solutions ({}): {} | Time: {:.3f}'.format(
+            attempt, len(solutions), solution_costs, elapsed_time(start_time)))
     return solutions
 
 def solve_and_smooth(solve_fn, q1, q2, distance_fn, sample_fn, extend_fn, collision_fn, **kwargs):
